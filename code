@@ -1,0 +1,86 @@
+
+from tkinter import *
+
+hp=Tk()
+hp.title("Fuel cost calculator")
+hp.geometry('600x550')
+
+
+def delete():
+    costentry.delete(0,END)
+    milentry.delete(0,END)
+    distentry.delete(0,END)
+    p = Label(text="                                   ", font="arial 24").place(x=330, y=367)
+    t= Label(text="                                    ", font="arial 24").place(x=330,y=430)
+
+
+
+def cal():
+    d=float(costentry.get())
+    l=float(milentry.get())
+    k=float(distentry.get())
+    w=k/l
+    w= round(w, 2)
+    wn=w
+    c=float(w*d)
+    c=round(c, 4)
+
+    if wn>=1:
+     p = Label(text=f"{wn}L", font="arial 24 bold").place(x=330, y=367)
+    elif wn==0:
+      j = Label(text="No fuel required", font="arial 24 bold").place(x=330, y=367)
+    else:
+      wn=w*1000
+      z = Label(text=f"{wn}mL", font="arial 24 bold").place(x=330, y=367)
+    a=float(c)
+    if c==0:
+      o=Label(text="No cost required", font="arial 24 bold").place(x=330, y=430)
+    elif c>=1:
+      v=Label(text=f"{c}Rs", font="arial 24 bold").place(x=330, y=430)
+    else:
+      r=a*100
+      h=Label(text=f"{c}Paisa", font="arial 24 bold").place(x=330, y=430)
+
+cost = Label(hp, text="Cost of Petrol per Ltr:", font="arial 15")
+mil = Label(hp, text="Mileage per ltr:", font="arial 15")
+dist = Label(hp, text="Total distance:", font="arial 15")
+name = Label(hp, text="Fuel cost calculator", font="arial 35 bold")
+tot = Label(hp, text="➡Total fuel required  =", font="arial 20")
+calul= Label(hp, text="Calculated Results:", font="arial 25")
+#cg=Label(hp, text="➡Total cost required =", font="arial 20").place(x=40,y=430)
+
+
+
+cost.place(x=50,y=100)
+mil.place(x=110,y=170)
+dist.place(x=115,y=240)
+name.place(x=80,y=15)
+tot.place(x=40,y=370)
+calul.place(x=50,y=310)
+
+costvalue=StringVar()
+milvalue=StringVar()
+distvalue=StringVar()
+
+costentry =Entry(hp, textvariable=costvalue, font="arial 20", width=8)
+milentry =Entry(hp, textvariable=milvalue, font="arial 20", width=8)
+distentry =Entry(hp, textvariable=distvalue, font="arial 20", width=8)
+
+costentry.place(x=250,y=100)
+milentry.place(x=250,y=170)
+distentry.place(x=250,y=240)
+
+Button(text="Calculate", font="arial 15",command=cal).place(x=400, y=100)
+Button(hp, text="Clear all", command=delete, font="arial 15", width=8).place(x=400, y=170)
+#Button(hp, text="Exit", command=lambda:exit(), font="arial 15",width=8).place(x=400, y=240)
+
+exit_button = Button(hp, text="Exit", font="arial 15" ,width=8   ,command=hp.destroy)
+exit_button.place(x=400, y=240)
+
+
+
+
+
+
+
+hp.mainloop()
